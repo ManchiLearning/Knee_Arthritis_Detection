@@ -2,7 +2,7 @@
 Proyecto de Detección y Clasificación de Artritis de Rodilla
 
 ## Setup del proyecto
-Requerimientos: python 3.8 - 3.11
+**Requerimientos:** python 3.8 - 3.11
 
 - Clonar repositorio
 
