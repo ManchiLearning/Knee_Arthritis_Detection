@@ -29,3 +29,8 @@ En donde se desee cargar el dataset de imágenes para trabajar con sklearn se de
     - **names:** Labels con clasificación de las imágenes como lista de python (por ejemplo, 0doubtful)
 
 **Nota:** En caso de que se desarrolle con tensorflow, la función `tf.keras.preprocessing.image_dataset_from_directory` es una mejor herramienta para la carga y configuración del entorno de trabajo.
+
+## Actualizar archivo requirements.txt
+
+- Con el virtual environment activado ejecutar en consola: `pip freeze > requirements.txt`
+- Realizar commit en repositorio y push.
