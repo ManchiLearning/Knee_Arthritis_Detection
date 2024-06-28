@@ -21,15 +21,21 @@ Proyecto de Detección y Clasificación de Artritis de Rodilla
 
 ## Carga del dataset
 
-En donde se desee cargar el dataset de imágenes para trabajar con sklearn se debe realizar lo siguiente:
+En donde se desee cargar el dataset de imágenes se debe realizar lo siguiente:
+  
+- Para trabajar con **sklearn**:
+  - Importar la función `load_dataset` del archivo `utils.py`. Esta función recibe como parámetro el directorio de las imágenes (por defecto "data/raw/images") y retorna una tupla de 3 elementos:
+      - **imgs:** Imágenes cargadas como array de NumPy de dimensiones (#imagenes, dim1, dim2) donde dim1 y dim2 es largo y ancho de las imágenes.
+      - **labels:** Labels numéricos de las imágenes como array de NumPy (únicamente número según categorías).
+      - **names:** Labels con clasificación de las imágenes como lista de python (por ejemplo, 0doubtful)
 
-- Importar la función `load_dataset` del archivo load_dataset. Esta función recibe como parámetro el directorio de las imágenes (por defecto "dataset") y retorna una tupla de 3 elementos:
-    - **imgs:** Imágenes cargadas como array de NumPy de dimensiones (#imagenes, dim1, dim2) donde dim1 y dim2 es largo y ancho de las imágenes.
-    - **labels:** Labels numéricos de las imágenes como array de NumPy (únicamente número según categorías).
-    - **names:** Labels con clasificación de las imágenes como lista de python (por ejemplo, 0doubtful)
-
-**Nota:** En caso de que se desarrolle con tensorflow, la función `tf.keras.preprocessing.image_dataset_from_directory` es una mejor herramienta para la carga y configuración del entorno de trabajo.
-
+- Para trabajar con **tensorflow**:
+  - Importar la función `load_dataset_tensorflow` del archivo `utils.py`. Esta función recibe como parámetro el directorio de las imágenes (por defecto "data/raw/images") y el subset que se desea cargar según lo siguiente:
+      - **train:** Carga el dataset y lo configura como dataset de entrenamiento.
+      - **valid:** Carga el dataset y lo configura como dataset de validación.
+      - **both:** Carga una tupla con dos datasets, uno de entrenamiento y otro de validación.
+  **NOTA:** En caso de usar **both**, se debe suministrar el parámetro **validation_split** como decimal entre 0 y 1 indicando el porcentaje del dataset usado para validación.
+  
 ## Actualizar archivo requirements.txt
 
 - Con el virtual environment activado ejecutar en consola: `pip freeze > requirements.txt`
