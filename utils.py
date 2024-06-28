@@ -7,7 +7,7 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing import image_dataset_from_directory
 import matplotlib.pyplot as plt
 
-def load_dataset(dataset_path=os.path.join("data","raw")):
+def load_dataset(dataset_path=os.path.join("data","raw","images")):
     imgs = []
     labels = []
     names = []
@@ -23,7 +23,7 @@ def load_dataset(dataset_path=os.path.join("data","raw")):
         i+=1
     return np.array(imgs), np.array(labels), names
 
-def load_dataset_tensorflow(dataset_path=os.path.join("data","raw"),**kwargs):
+def load_dataset_tensorflow(dataset_path=os.path.join("data","raw","images"),**kwargs):
     if not "subset" in kwargs:
         raise ValueError("Please provide a subset parameter (train, valid, both)")
     
