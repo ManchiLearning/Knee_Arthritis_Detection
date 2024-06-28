@@ -5,7 +5,7 @@ from skimage.transform import resize
 from tqdm import tqdm
 
 
-def load_dataset(dataset_path):
+def load_dataset(dataset_path=os.path.join("data","raw")):
     imgs = []
     labels = []
     names = []
