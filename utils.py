@@ -24,12 +24,11 @@ def load_dataset(dataset_path=os.path.join("data","raw","images")):
     return np.array(imgs), np.array(labels), names
 
 def load_dataset_tensorflow(dataset_path=os.path.join("data","raw","images"),**kwargs):
-    if not "subset" in kwargs:
-        raise ValueError("Please provide a subset parameter (train, valid, both)")
     
-    if kwargs["subset"] == "both" and not "validation_split" in kwargs:
-        raise ValueError("Please provide a validation_split parameter")
-    
+    if "subset" in kwargs:
+        if kwargs["subset"] == "both" and not "validation_split" in kwargs:
+            raise ValueError("Please provide a validation_split parameter")
+        
     return image_dataset_from_directory(dataset_path,color_mode="grayscale",seed=42,label_mode="categorical",batch_size=32,**kwargs)
 
 def plot_accuraccy_loss(history):
