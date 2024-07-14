@@ -6,8 +6,9 @@ from tqdm import tqdm
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image_dataset_from_directory
 import matplotlib.pyplot as plt
+import seaborn as sns
 
-def load_dataset(dataset_path=os.path.join("data","raw","images")):
+def load_dataset(dataset_path=os.path.join("data","processed","images")):
     imgs = []
     labels = []
     names = []
@@ -23,7 +24,7 @@ def load_dataset(dataset_path=os.path.join("data","raw","images")):
         i+=1
     return np.array(imgs), np.array(labels), names
 
-def load_dataset_tensorflow(dataset_path=os.path.join("data","raw","images"),**kwargs):
+def load_dataset_tensorflow(dataset_path=os.path.join("data","processed","images"),**kwargs):
     
     if "subset" in kwargs:
         if kwargs["subset"] == "both" and not "validation_split" in kwargs:
@@ -48,4 +49,47 @@ def plot_accuraccy_loss(history):
     ax[1].set_ylabel('Loss')
     ax[1].legend()
     ax[1].grid()
+    plt.show()
+
+def plot_accuraccy(history):
+    plt.plot(history.history['accuracy'], label='Accuracy')
+    plt.plot(history.history['val_accuracy'], label = 'Val Accuracy')
+    plt.xlabel('Epoch')
+    plt.ylabel('Accuracy')
+    plt.ylim([0, 1])
+    plt.legend(loc='lower right')
+    plt.show()
+
+def plot_precision(history):
+    plt.plot(history.history['precision'], label='Precision')
+    plt.plot(history.history['val_precision'], label = 'Val Precision')
+    plt.xlabel('Epoch')
+    plt.ylabel('Precision')
+    plt.ylim([0, 1])
+    plt.legend(loc='lower right')
+    plt.show()
+
+def plot_recall(history):
+    plt.plot(history.history['recall'], label='Recall')
+    plt.plot(history.history['val_recall'], label = 'Val Recall')
+    plt.xlabel('Epoch')
+    plt.ylabel('Recall')
+    plt.ylim([0, 1])
+    plt.legend(loc='lower right')
+    plt.show()
+
+def plot_loss(history):
+    plt.plot(history.history['loss'], label='Loss')
+    plt.plot(history.history['val_loss'], label = 'Val Loss')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+    plt.legend(loc='upper right')
+    plt.show()
+
+def plot_confusion_matrix(cm, class_names):
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=class_names, yticklabels=class_names)
+    plt.xlabel('Predicted Label')
+    plt.ylabel('True Label')
+    plt.title('Confusion Matrix')
     plt.show()
